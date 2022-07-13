@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateLessonFilesTable extends Migration
+class CreateMahasiswasTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,13 @@ class CreateLessonFilesTable extends Migration
      */
     public function up()
     {
-        Schema::create('lesson_files', function (Blueprint $table) {
+        Schema::create('mahasiswa', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->foreignId('lesson_id')
-                ->nullable();
+            $table->string('nama_mahasiswa',100);
+            $table->string('no_telp',20);
+            $table->string('email',100);
+            $table->text('alamat');
+            $table->text('keterangan');
             $table->timestamps();
         });
     }
@@ -29,6 +31,6 @@ class CreateLessonFilesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('lesson_files');
+        Schema::dropIfExists('mahasiswas');
     }
 }
