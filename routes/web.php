@@ -20,6 +20,8 @@ Route::get('/', function () {
 
 Route::prefix('api')->group(function () {
 
+    
+
     Route::get('/index','MahasiswaController@index');
     Route::post('/create','MahasiswaController@create');
     Route::put('/update/{id}','MahasiswaController@update');
