@@ -6,6 +6,28 @@ use \App\Models\mahasiswa;
 
 class MahasiswaController extends Controller
 {
+    public function searchData(Request $request)
+    {
+
+        try {
+            $result = mahasiswa::select("*")->orderBy('nama_mahasiswa','ASC');
+
+            if(!empty($request->keyword))
+            {
+                $result->where('nama_mahasiswa','like', '%'.$request->keyword.'%')
+                ->orWhere('email', 'like', '%'.$request->keyword.'%');
+            }
+
+            
+            $data = $result->get();
+            
+        } catch (\Throwable $th) {
+            var_dump($th);
+        }
+
+        return response()->json(['code' => '00','message' => 'success', 'data' => $data]);   
+    }
+
     public function index()
     {
         $data = mahasiswa::all();
